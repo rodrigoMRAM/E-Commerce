@@ -9,18 +9,20 @@ export interface Product {
     tail: string;
     type: string;
     id:number;
+    price:number;
 }
 
-export interface CarProduct{
-    id: number;
-    name: string;
-    image: string;
-    quantity: number
-}
 
 export interface Release {
     au: string;
     eu: string;
     jp: string;
     na: string;
+}
+export interface CarProduct{
+    id: number;
+    name: string;
+    image: string;
+    quantity: number;
+    price:number;
 }

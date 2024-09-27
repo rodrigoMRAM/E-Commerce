@@ -5,8 +5,9 @@ import "./index.css";
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 import { LayoutMain } from "./components/Layout/LayoutMain";
 import Home from "./pages/Home/Home";
-import { Cart } from "./pages/Cart/Cart";
+// import { Cart } from "./pages/Cart/Cart";
 import { CartProvider } from "./context/CartProvider";
+import Checkout from "./pages/Checkout/Checkout";
 
 const router = createBrowserRouter([
 	{
@@ -16,7 +17,7 @@ const router = createBrowserRouter([
 			{
 				index:true,element: <Home/>
 			},
-			{path:"cart", element: <Cart/>}
+			{path:"/checkout", element: <Checkout/>}
 		]
 	}
 ])

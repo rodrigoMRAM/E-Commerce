@@ -3,12 +3,17 @@ import { CarProduct } from "../interfaces/products"
 export interface CartState{
     cartItems: CarProduct[]
 }
-export const initialState ={
+export const initialState:CartState ={
     cartItems : []
 }
 
+export interface CartAction{
+    type: "ADD_TO_CART" | "REMOVE_FROM_CART" | "CLEAR_CART";
+    payload: CarProduct
+}
 
-export const cartReducer=(state,action)=>{
+
+export const cartReducer=(state:CartState,action:CartAction):CartState=>{
     switch (action.type) {
         case "ADD_TO_CART":{
             const {id} = action.payload
@@ -30,19 +35,29 @@ export const cartReducer=(state,action)=>{
             const {id:removeItemID} = action.payload;
             //Validar si el titem ya existe en el carrito
             const itemToRemove = state.cartItems.find((item)=>  item.id === removeItemID)
-            if(itemToRemove.quantity ===1){
-                return {
-                    ...state,
-                    cartItems: state.cartItems.filter((item)=> item.id !== removeItemID)
+            if(itemToRemove){
+
+                if(itemToRemove.quantity ===1){
+                    return {
+                        ...state,
+                        cartItems: state.cartItems.filter((item)=> item.id !== removeItemID)
+                    }
                 }
+                else{
+                    return{
+                        ...state,
+                        cartItems:state.cartItems.map((item)=> item.id ===removeItemID?{...itemToRemove, quantity: itemToRemove.quantity-1} : item)
+                    }
+                    }
+                }
+                return state;
             }
-            else{
+            case "CLEAR_CART":{
                 return{
                     ...state,
-                    cartItems:state.cartItems.map((item)=> item.id ===removeItemID?{...itemToRemove, quantity: itemToRemove.quantity-1} : item)
+                    cartItems :[]
                 }
             }
-        }
         default:
             return state;
         
