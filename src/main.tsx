@@ -8,6 +8,12 @@ import Home from "./pages/Home/Home";
 // import { Cart } from "./pages/Cart/Cart";
 import { CartProvider } from "./context/CartProvider";
 import Checkout from "./pages/Checkout/Checkout";
+import { QueryClient ,QueryClientProvider} from '@tanstack/react-query'
+import Login from "./pages/Login/Login";
+import Dashboard from "./pages/Dashboard/Dashboard";
+
+
+const queryClient = new QueryClient()
 
 const router = createBrowserRouter([
 	{
@@ -19,15 +25,22 @@ const router = createBrowserRouter([
 			},
 			{path:"/checkout", element: <Checkout/>}
 		]
-	}
+	},
+	{
+		path: "/login",element: <Login/>
+	},
+	{
+		path:"/dashboard" , element: <Dashboard/>
+	},
 ])
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
 	<React.StrictMode>
 		{/* <App /> */}
+		<QueryClientProvider client={queryClient}>
 		<CartProvider>
-
 		<RouterProvider router={router}/>
 		</CartProvider>
+		</QueryClientProvider>
 	</React.StrictMode>
 );

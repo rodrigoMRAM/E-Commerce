@@ -5,10 +5,10 @@ export interface Product {
     head:string;
     image: string;
     name: string;
-    release:Release;
+    release?:Release;
     tail: string;
     type: string;
-    id:number;
+    id?:number;
     price:number;
 }
 
@@ -20,7 +20,7 @@ export interface Release {
     na: string;
 }
 export interface CarProduct{
-    id: number;
+    id?: number;
     name: string;
     image: string;
     quantity: number;
